@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["es6", "DOM", "DOM.Iterable"],
+    "module": "commonjs",
+    "outDir": "build/cjs",
+    "declaration": true,
+    "noEmit": false,
+    "types": ["node"]
+  },
+  "include": [
+    "src"
+  ]
+}

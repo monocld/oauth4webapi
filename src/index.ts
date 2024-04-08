@@ -913,9 +913,13 @@ export class UnsupportedOperationError extends Error {
  * @group Errors
  */
 export class OperationProcessingError extends Error {
+  // @ts-ignore
+  override cause?: unknown
+
   constructor(message: string, options?: { cause?: unknown }) {
-    super(message, options)
+    super(message)
     this.name = this.constructor.name
+    this.cause = options?.cause
     // @ts-ignore
     Error.captureStackTrace?.(this, this.constructor)
   }
