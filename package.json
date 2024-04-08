@@ -1,5 +1,5 @@
 {
-  "name": "oauth4webapi",
+  "name": "@monocloud/oauth4webapi",
   "version": "2.11.1",
   "description": "OAuth 2 / OpenID Connect for JavaScript Runtimes",
   "keywords": [
@@ -33,24 +33,20 @@
     "workerd",
     "workers"
   ],
-  "homepage": "https://github.com/panva/oauth4webapi",
-  "repository": "panva/oauth4webapi",
-  "funding": {
-    "url": "https://github.com/sponsors/panva"
-  },
+  "homepage": "https://github.com/monocld/oauth4webapi",
+  "repository": "monocld/oauth4webapi",
   "license": "MIT",
   "author": "Filip Skokan <panva.ip@gmail.com>",
   "sideEffects": false,
-  "type": "module",
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "types": "build/cjs/index.d.ts",
   "files": [
-    "build/index.js",
-    "build/index.d.ts"
+    "build"
   ],
   "scripts": {
     "_format": "find src test tap examples conformance -type f -name '*.ts' -o -name '*.mjs' -o -name '*.cjs' | xargs prettier",
-    "build": "rm -rf build && tsc && tsc --declaration true --emitDeclarationOnly true --removeComments false && tsc -p test && tsc -p examples && tsc -p conformance && tsc -p tap",
+    "build": "rimraf build && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && tsc -p test && tsc -p examples && tsc -p conformance && tsc -p tap",
     "conformance": "bash -c 'source .node_flags.sh && ava --config conformance/ava.config.ts'",
     "docs": "patch-package && typedoc",
     "format": "npm run _format -- --write",
@@ -82,6 +78,7 @@
     "puppeteer-core": "^22.13.1",
     "qunit": "^2.21.1",
     "raw-body": "^2.5.2",
+    "rimraf": "5.0.5",
     "selfsigned": "^2.4.1",
     "timekeeper": "^2.3.1",
     "tsx": "^4.16.2",
